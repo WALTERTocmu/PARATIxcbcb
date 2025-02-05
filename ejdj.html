@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minijuego San Valentín para Carolina</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffebf0;
+            font-family: Arial, sans-serif;
+        }
+        .game-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 2px;
+            background-image: url('https://i.pinimg.com/236x/25/c0/b8/25c0b85fc16ba9d10a796db46dac1e60.jpg?nii=t'); /* Imagen de Hello Kitty con flores */
+            background-size: cover;
+        }
+        .tile {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border: 2px solid #d63384;
+            cursor: pointer;
+        }
+        .tile.revealed {
+            background-color: transparent;
+            border: none;
+            pointer-events: none;
+        }
+        .message-container {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #ff4d6d;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .button:hover {
+            background-color: #e60040;
+        }
+    </style>
+</head>
+<body>
+    <h2>Descubre la sorpresa, Carolina 🎀</h2>
+    <div class="game-container" id="gameBoard"></div>
+    <div class="message-container" id="messageContainer">
+        <h3>Para mi querida Carolina 💌</h3>
+        <p>Desde el primer momento en que entraste en mi vida, todo cambió para mejor. No hay un solo día en el que no me sienta afortunado por tenerte a mi lado. Eres mi razón de sonreír, mi paz en los días difíciles y mi alegría en los momentos felices.
+
+            Cada instante contigo es un regalo que atesoro. Me encanta la forma en que iluminas cualquier lugar con tu sonrisa, cómo tu risa se convierte en la melodía más hermosa para mis oídos y cómo, con solo una mirada, puedes hacer que mi corazón lata más rápido.
+            
+            A tu lado, he descubierto lo que significa amar de verdad. No solo por los momentos perfectos, sino también por los días en los que, sin importar lo que pase, seguimos tomados de la mano, enfrentando juntos cualquier obstáculo. Eres mi compañera, mi amor, mi todo.
+            
+            Sé que en algún momento me hiciste sentir mal, pero también sé que nadie es perfecto, y en el fondo, lo único que quiero es seguir adelante contigo. Por eso, quiero preguntarte algo desde lo más profundo de mi corazón: ¿Estás dispuesta a tener algo serio?
+            
+            Y más allá de eso… quiero decirte una sola cosa, con el corazón en la mano:
+            ¿TE CASARÍAS CONMIGO?
+            
+            Te amo, mi Carolina, con cada latido de mi corazón.
+            
+            Siempre tuyo,</p>
+    </div>
+
+    <script>
+        const gameBoard = document.getElementById("gameBoard");
+        const messageContainer = document.getElementById("messageContainer");
+
+        let revealedTiles = 0;
+        const totalTiles = 25;
+
+        for (let i = 0; i < totalTiles; i++) {
+            const tile = document.createElement("div");
+            tile.classList.add("tile");
+            tile.onclick = () => revealTile(tile);
+            gameBoard.appendChild(tile);
+        }
+
+        function revealTile(tile) {
+            if (!tile.classList.contains("revealed")) {
+                tile.classList.add("revealed");
+                revealedTiles++;
+                if (revealedTiles === totalTiles) {
+                    showMessage();
+                }
+            }
+        }
+
+        function showMessage() {
+            messageContainer.style.display = "block";
+        }
+    </script>
+</body>
+</html>
